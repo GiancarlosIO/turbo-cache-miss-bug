@@ -28,34 +28,6 @@
         "$NEXT_PUBLIC_SENTRY_DSN"
       ]
     },
-    "@crehana/cli#build": {
-      "outputs": [
-        "dist/**",
-        "cjs/**"
-      ],
-      "dependsOn": ["typecheck", "lint", "test"]
-    },
-    "@crehana/cli#lint": {
-      "outputs": [
-        "dist/**",
-        "cjs/**"
-      ],
-      "dependsOn": []
-    },
-    "@crehana/cli#test": {
-      "outputs": [
-        "dist/**",
-        "cjs/**"
-      ],
-      "dependsOn": []
-    },
-    "@crehana/cli#typecheck": {
-      "outputs": [
-        "dist/**",
-        "cjs/**"
-      ],
-      "dependsOn": []
-    },
     "test": {
       "outputs": [],
       "dependsOn": ["lint", "typecheck", "^build"]
