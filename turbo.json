@@ -1,0 +1,98 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": [
+        "dist/**",
+        "cjs/**",
+        ".next/**"
+      ],
+      "dependsOn": [
+        "test",
+        "^build",
+        "$API_URL",
+        "$NEXT_PUBLIC_GTM_ID",
+        "$NEXT_PUBLIC_FB_PIXEL_ID",
+        "$NEXT_PUBLIC_SOCIAL_AUTH_GOOGLE_OAUTH2_KEY",
+        "$NEXT_PUBLIC_GTAG_ID",
+        "$NEXT_PUBLIC_GANALYTICS_ID",
+        "$NEXT_PUBLIC_AMPLITUDE_API_KEY",
+        "$NEXT_PUBLIC_SOCIAL_AUTH_FACEBOOK_APP_ID",
+        "$NEXT_PUBLIC_AMPLITUDE_EXPERIMENTS_KEY",
+        "$VERCEL_GIT_COMMIT_REF",
+        "$CI_COMMIT_BRANCH",
+        "$VERCEL_ENV",
+        "$APP_DOMAIN",
+        "$VERCEL_GIT_COMMIT_SHA",
+        "$SENTRY_DSN",
+        "$NEXT_PUBLIC_SENTRY_DSN"
+      ]
+    },
+    "@crehana/cli#build": {
+      "outputs": [
+        "dist/**",
+        "cjs/**"
+      ],
+      "dependsOn": ["typecheck", "lint", "test"]
+    },
+    "@crehana/cli#lint": {
+      "outputs": [
+        "dist/**",
+        "cjs/**"
+      ],
+      "dependsOn": []
+    },
+    "@crehana/cli#test": {
+      "outputs": [
+        "dist/**",
+        "cjs/**"
+      ],
+      "dependsOn": []
+    },
+    "@crehana/cli#typecheck": {
+      "outputs": [
+        "dist/**",
+        "cjs/**"
+      ],
+      "dependsOn": []
+    },
+    "test": {
+      "outputs": [],
+      "dependsOn": ["lint", "typecheck", "^build"]
+    },
+    "typecheck": {
+      "outputs": [
+        "dist/**"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "dependsOn": [],
+      "outputs": []
+    },
+    "lint:fix": {},
+    "dev": {
+      "cache": false
+    },
+    "docs": {
+      "cache": false
+    },
+    "docs:build": {
+      "outputs": [
+        "docs/**"
+      ]
+    },
+    "docs:deploy": { },
+    "clean": {
+      "cache": false
+    },
+    "precommit": {
+      "cache": false
+    }
+  },
+  "baseBranch": "origin/master",
+  "globalDependencies": [
+    "$NODE_ENV"
+  ]
+}
+
